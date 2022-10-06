@@ -1,4 +1,5 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
+import { LocContext } from "../context/LocContext";
 
 interface RouteProps {
   path: string;
@@ -6,7 +7,8 @@ interface RouteProps {
 }
 
 const Route = ({ path, component }: RouteProps) => {
-  return <Fragment>{location.pathname === path && component}</Fragment>;
+  const loc = useContext(LocContext);
+  return <Fragment>{loc === path && component}</Fragment>;
 };
 
 export default Route;

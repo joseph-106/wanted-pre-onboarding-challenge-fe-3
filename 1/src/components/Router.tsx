@@ -1,16 +1,14 @@
-import { Fragment, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { LocContext } from "../context/LocContext";
 
 interface RouterProps {
   children: JSX.Element | JSX.Element[];
 }
 
 const Router = ({ children }: RouterProps) => {
-  useEffect(() => {
-    window.onpopstate = (event) => {
-      if (event) location.reload();
-    };
-  }, []);
-  return <Fragment>{children}</Fragment>;
+  const [loc, setLoc] = useState(location.pathname);
+  useEffect(() => (window.onpopstate = () => setLoc(location.pathname)), []);
+  return <LocContext.Provider value={loc}>{children}</LocContext.Provider>;
 };
 
 export default Router;

@@ -5,7 +5,9 @@ import Root from "./pages/Root";
 import About from "./pages/About";
 import "./index.css";
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+const container = document.getElementById("root") as HTMLElement;
+
+ReactDOM.createRoot(container).render(
   <Router>
     <Route path="/" component={<Root />} />
     <Route path="/about" component={<About />} />
